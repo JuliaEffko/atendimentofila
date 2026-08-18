@@ -1,0 +1,84 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #e3f2fd;
+background-image: url("../hospital.jpg");
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+
+.container {
+width: 420px;
+margin: 80px auto;
+padding: 30px;
+background: rgba(255, 255, 255, 0.92);
+border-radius: 15px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+text-align: center;
+color: #1565c0;
+margin-bottom: 25px;
+}
+
+input {
+width: 100%;
+padding: 12px;
+box-sizing: border-box;
+border: 1px solid #b0bec5;
+border-radius: 8px;
+font-size: 15px;
+margin-bottom: 20px;
+}
+
+.botoes {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+
+button {
+padding: 10px;
+border: none;
+border-radius: 8px;
+background-color: #1976d2;
+color: white;
+font-size: 14px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+button:hover {
+background-color: #0d47a1;
+}
+
+#resultado {
+margin-top: 20px;
+min-height: 100px;
+border: 1px solid #cfd8dc;
+border-radius: 8px;
+background-color: #ffffff;
+padding: 10px;
+box-sizing: border-box;
+font-size: 14px;
+line-height: 1.5;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th {
+background-color: #1976d2;
+color: white;
+padding: 10px;
+}
+
+td {
+padding: 10px;
+border-bottom: 1px solid #ddd;
+text-align: center;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Fila</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+```
+<h2>Controle de Fila</h2>
+
+<input type="text" id="nomePaciente" placeholder="Nome">
+<input type="number" id="posicaoPaciente" placeholder="Posição (0, 1, 2...)">
+
+<br><br>
+
+<button onclick="cadastrar()">Cadastrar</button>
+<button onclick="consultar()">Consultar</button>
+<button onclick="alterar()">Alterar</button>
+<button onclick="deletar()">Deletar</button>
+
+<br><br>
+
+<div id="resultado">
+    <h3>Fila:</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabelaFila"></tbody>
+    </table>
+</div>
+
+<script src="js/script.js"></script>
+```
+
+</body>
+</html>
