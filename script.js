@@ -1,82 +1,123 @@
-const fila = [];
+const fila=[];
 
-function cadastrar() {
-const inputNome = document.getElementById("nomePaciente");
-const inputId = document.getElementById("posicaoPaciente");
+function cadastrar(){
 
-let nome = inputNome.value;
-let id = Number(inputId.value);
+const nomePaciente=document.getElementById("nomePaciente");
+const tabelaFila=document.getElementById("tabelaFila");
 
-const pacienteData = {
-    id: id,
-    nome: nome
+let nome=nomePaciente.value;
+
+if(nome==""){
+return;
+}
+
+let numero=fila.length+1;
+
+const paciente={
+numero:numero,
+nome:nome
 };
- 
- fila.push(pacienteData);
+fila.push(paciente);
 
-atualizarTela();
-
-inputNome.value = "";
-inputId.value = "";
-
+mostrar();
+nomePaciente.value="";
 }
 
- function atualizarTela() {
-const tabela = document.getElementById("tabelaFila");
+function mostrar(){
 
- tabela.innerHTML = "";
-fila.forEach((paciente, index) => {
-    tabela.innerHTML += `
-        <tr>
-            <td>${paciente.id}</td>
-            <td>${paciente.nome}</td>
-        </tr>
-    `;
- });
+const tabelaFila=document.getElementById("tabelaFila");
 
+tabelaFila.innerHTML="";
+
+for(let i=0;i<fila.length;i++){
+
+tabelaFila.innerHTML+=`
+<tr>
+<td>${fila[i].numero}</td>
+<td>${fila[i].nome}</td>
+</tr>
+`;
+}
 }
 
- function consultar() {
- const inputId = document.getElementById("posicaoPaciente");
-const resultado = document.getElementById("resultado");
+function consultar(){
 
-let id = Number(inputId.value);
+const nomePaciente=document.getElementById("nomePaciente");
+const resultado=document.getElementById("resultado");
 
-let paciente = fila[id];
+let nome=nomePaciente.value;
 
-resultado.innerHTML = `
-    <h3>Paciente encontrado:</h3>
-    <p>ID: ${paciente.id}</p>
-    <p>Nome: ${paciente.nome}</p>
+for(let i=0;i<fila.length;i++){
+
+if(fila[i].nome.toLowerCase()==nome.toLowerCase()){
+
+resultado.innerHTML=`
+<h3>Paciente encontrado:</h3>
+<p><strong>Número:</strong> ${fila[i].numero}</p>
+<p><strong>Nome:</strong> ${fila[i].nome}</p>
 `;
 
+return;
+}
 }
 
-function alterar() {
- const inputNome = document.getElementById("nomePaciente");
- const inputId = document.getElementById("posicaoPaciente");
-
-let id = Number(inputId.value);
-  let nome = inputNome.value;
-
- fila[id].nome = nome;
-
-atualizarTela();
-
-inputNome.value = "";
-inputId.value = "";
-
+resultado.innerHTML="<h3>Paciente não encontrado.</h3>";
 }
 
-function deletar() {
- const inputId = document.getElementById("posicaoPaciente");
+function alterar(){
 
- let id = Number(inputId.value);
+const nomePaciente=document.getElementById("nomePaciente");
+const alterarNome=document.getElementById("alterarNome");
 
-fila.splice(id, 1);
+let nome=nomePaciente.value;
 
- atualizarTela();
+for(let i=0;i<fila.length;i++){
 
-inputId.value = "";
+if(fila[i].nome.toLowerCase()==nome.toLowerCase()){
 
+alterarNome.innerHTML=`
+<input type="text" id="novoNome" placeholder="Novo nome">
+<button onclick="salvar(${i})">Salvar</button>
+`;
+return;
+}
+}
+}
+
+function salvar(i){
+
+const novoNome=document.getElementById("novoNome");
+
+let nome=novoNome.value;
+
+if(nome!=""){
+
+fila[i].nome=nome;
+
+mostrar();
+document.getElementById("alterarNome").innerHTML="";
+document.getElementById("nomePaciente").value="";
+}
+}
+
+function deletar(){
+const nomePaciente=document.getElementById("nomePaciente");
+let nome=nomePaciente.value;
+
+for(let i=0;i<fila.length;i++){
+
+if(fila[i].nome.toLowerCase()==nome.toLowerCase()){
+
+fila.splice(i,1);
+
+for(let j=0;j<fila.length;j++){
+
+fila[j].numero=j+1;
+}
+
+mostrar();
+nomePaciente.value="";
+return;
+}
+}
 }
